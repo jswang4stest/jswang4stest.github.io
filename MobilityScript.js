@@ -591,7 +591,7 @@
 	
 	function changeContract() {
 		contract = document.getElementById("contractSelect").value;
-		window.alert("contract: " + contract);
+		
 		if(useCookies)
 		{
 			document.cookie = "contract=" + document.getElementById("contractSelect").selectedIndex + "; expires=Tue, 19 Jan 2038 04:14:07 UTC" + "; path=/";
