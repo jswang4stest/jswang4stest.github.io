@@ -47,6 +47,7 @@
 		
 		if(useCookies)
 		{
+			window.alert("contract index: " + getCookie("contract"));
 			document.getElementById("contractSelect").index = getCookie("contract");
 			changeContract();
 		}
