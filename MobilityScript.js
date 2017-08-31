@@ -104,11 +104,9 @@
 			case 'q2': //Will the patient need to be in a wheelchair to and from the vehicle?
 				
 				if(document.getElementById('q2Dropdown').value == "Yes"){
-					updateEquipment('wheelchairToFrom', true);
 					showSubQuestion('q2a');
 				}
 				else if(document.getElementById('q2Dropdown').value == "No"){
-					updateEquipment('wheelchairToFrom', false);
 					//Must be at least 2 man if the patient needs oxygen
 					if(o2)
 					{
@@ -139,7 +137,7 @@
 			case 'q2b': //Will the patient provide their own wheelchair?
 				
 				if(document.getElementById('q2bDropdown').value == "Yes"){
-					updateRequirements('bringWheelchair', false);
+					updateEquipment('wheelchairToFrom', false);
 					if(wheelchairVehicle)
 					{
 						showSubQuestion('q2c');
@@ -159,7 +157,7 @@
 					}
 				}
 				else if(document.getElementById('q2bDropdown').value == "No"){
-					updateRequirements('bringWheelchair', true);
+					updateEquipment('wheelchairToFrom', true);
 					if(o2)
 					{
 						q2StoreNextQuestion = 'q5';
@@ -487,7 +485,7 @@
 			equipment = equipment.concat("<p>Oxygen req'd</p>");
 		}
 		if(wheelchairToFrom && !stretcher){
-			additionalDetails = additionalDetails.concat("<p>Wheelchair required to and from vehicle</p>");
+			additionalDetails = additionalDetails.concat("<p>" + (bariatric ? "Bariatric " : "") + "Wheelchair required to and from vehicle</p>");
 			equipment = equipment.concat("<p>Wheel Chair to/from</p>");
 		}
 		if(mobility == 'Bariatric Wheelchair'){
@@ -501,7 +499,7 @@
 			requirements = requirements.concat("<p>Requires Carry Chair</p>");
 		}
 		if(bringWheelchair && !stretcher){
-			requirements = requirements.concat("<p>Needs " + (bariatric ? "Bariatric " : "") + "Wheelchair on arrival</p>");			
+			//requirements = requirements.concat("<p>Needs " + (bariatric ? "Bariatric " : "") + "Wheelchair on arrival</p>");			
 		}
 		if(weight > -1){
 			additionalDetails = additionalDetails.concat("<p>Weight: " + weight + "kg</p>");
@@ -555,8 +553,7 @@
 				return "Patient requires the use of specialist lifting or carrying equipment, and/or the assistance of more than 2 crew";
 			
 			default: return "null";
-		}
-		
+		}		
 	}
 	
 	function hideEverything() {
