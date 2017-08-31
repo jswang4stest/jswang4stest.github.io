@@ -462,7 +462,7 @@
 	
 	
 	function suggestMobility(mobility) {
-		document.getElementById('suggestion').innerHTML = parseContractMobility(mobility);
+		document.getElementById('suggestion').innerHTML = parseContractMobility(contractIndexToText(mobility));
 		showSuggestionBox();
 		
 		var additionalDetails = "";
@@ -964,6 +964,14 @@
 		}
 	}
 	
+	
+	function mobilityIndexToText(index) {
+		switch(index)
+		{
+			case 0: return "k&m";
+			case 1: return "uclh";
+		}
+	}
 	
 	function parseContractMobility(mobility) {
 		switch(mobility)
