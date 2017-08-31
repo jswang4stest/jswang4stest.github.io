@@ -77,59 +77,6 @@ h3
 	font-style: italic;
 }
 
-#infoFloat
-{
-	position: fixed;
-	
-	left: 0px;
-	top: 15%;
-	
-	float:left;
-	
-	padding: 10px;
-	
-	text-align: center;
-	font-size: 14px;
-	
-	width: 120px;
-	max-height: 500px;
-	overflow: auto;
-	
-	background-color: white;
-	border-top-right-radius: 25px;
-	border-bottom-right-radius: 25px;
-	border: 2px solid #90caf9;
-	
-	z-index: 300;
-	
-}
-
-#infoFloat h1
-{
-	font-size: 20px;
-	color: #039be5;
-}
-
-#infoFloat .infoSection .infoValue
-{
-	padding: 5px;
-	margin: 2px;
-	background-color: #DDDDDD;
-	color: grey;
-	cursor: pointer;
-}
-
-#infoFloat input{
-	position: relative;
-	left: 10px;
-	margin-bottom: 5px;
-	width: 70px;
-	margin-right: 12px;
-}
-#infoFloat #infoConversion{
-	text-align: left;
-}
-
 .questionboxes
 {
 	text-align: center;

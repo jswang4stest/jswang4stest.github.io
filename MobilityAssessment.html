@@ -22,7 +22,7 @@
 				<h4>Please enable scripts and refresh the page (please note Internet Explorer is not supported)</h4>
 			</div>
 		</div>
-
+		
 		<div id="modalOverlay">
 			<div id="suggestionBox" class="modalBox">
 				<h3>Suggested mobility: <span id="suggestion">unknown</span></h3>
@@ -72,11 +72,19 @@
 		
 		
 		<div id="infoFloat" class="cant_select">
+		
+			<div id="infoContract"><h1>Contract</h1>
+				<select id="contractSelect" onchange="changeContract()">
+					<option value="k&m">K&amp;M</option>
+					<option value="uclh">UCLH</option>
+				</select>
+			</div>
 			
 			<div id="infoConversion"><h1>Conversion</h1>
-			<p><input class="smallConvert" id="convertSt" type="number" value="0" min="0" onkeyup="updateKg()" onchange="updateKg()"/><label>st</label>
-			<input class="smallConvert" id="convertLb" type="number" value="0" min="0" onkeyup="updateKg()" onchange="updateKg()"/><label>lb</label>
-			<input id="convertKg" type="number" value="0" min="0" onkeyup="updateLb()" onchange="updateLb()"/><label>kg</label></p></div>
+				<p><input class="smallConvert" id="convertSt" type="number" value="0" min="0" onkeyup="updateKg()" onchange="updateKg()"/><label>st</label>
+				<input class="smallConvert" id="convertLb" type="number" value="0" min="0" onkeyup="updateKg()" onchange="updateKg()"/><label>lb</label>
+				<input id="convertKg" type="number" value="0" min="0" onkeyup="updateLb()" onchange="updateLb()"/><label>kg</label></p>
+			</div>
 			
 			<div id="infoEquipment" class="infoSection"><h1>Equipment</h1>
 				<div id="infoO2" class="infoValue" onclick="xupdateEquipment('o2', !o2)">O2</div>
@@ -97,13 +105,6 @@
 			<button id="restoreButton" onclick="restoreAssessment()" style="margin: 3px; width: 70px; display: none;"> Restore </button>
 		</div>
 		
-		<div id="contractSelectDiv">
-			<label>Contract:</label>
-			<select id="contractSelect" onchange="changeContract()">
-				<option value="k&m">K&amp;M</option>
-				<option value="uclh">UCLH</option>
-			</select>
-		</div>
 		
 		<h1> PTS Mobility Assessment </h1>
 		
