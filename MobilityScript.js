@@ -47,7 +47,7 @@
 		
 		if(useCookies)
 		{
-			document.getElementById("contractSelect").value = getCookie("contract");
+			document.getElementById("contractSelect").index = getCookie("contract");
 			changeContract();
 		}
 	}
@@ -591,7 +591,7 @@
 	
 	
 	function changeContract() {
-		contract = document.getElementById("contractSelect").value;
+		contract = document.getElementById("contractSelect").index;
 		
 		if(useCookies)
 		{
