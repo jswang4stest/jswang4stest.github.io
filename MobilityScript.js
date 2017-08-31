@@ -48,7 +48,7 @@
 		if(useCookies)
 		{
 			window.alert("contract index: " + getCookie("contract"));
-			document.getElementById("contractSelect").index = getCookie("contract");
+			document.getElementById("contractSelect").selectedIndex = getCookie("contract");
 			changeContract();
 		}
 	}
@@ -596,8 +596,8 @@
 		
 		if(useCookies)
 		{
-			document.cookie = "contract=" + document.getElementById("contractSelect").index + "; expires=Tue, 19 Jan 2038 04:14:07 UTC" + "; path=/";
-			window.alert("cookie index: " + document.getElementById("contractSelect").index);
+			document.cookie = "contract=" + document.getElementById("contractSelect").selectedIndex + "; expires=Tue, 19 Jan 2038 04:14:07 UTC" + "; path=/";
+			window.alert("cookie index: " + document.getElementById("contractSelect").selectedIndex);
 		}
 		
 		switch(contract)
