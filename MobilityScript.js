@@ -48,12 +48,14 @@
 		
 		if(useCookies) {
 			document.getElementById("contractSelect").selectedIndex = getCookie("contract");
-			changeContract();
 		}
 		else {
 			//fallback default
+			document.getElementById("contractSelect").selectedIndex = 0;
 			contract = "k&m";
 		}
+		
+		changeContract();
 	}
 	
 	function updateAnswers(sender) {
