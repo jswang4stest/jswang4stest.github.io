@@ -62,6 +62,7 @@
 		//window.alert("Contract: " + contract);
 	}
 	
+	
 	function updateAnswers(sender) {
 		switch(sender)
 		{
@@ -107,13 +108,13 @@
 			case 'q1c':
 				
 				howMuchOxygen = document.getElementById('q1cInputBox').value;
-				if(howMuchOxygen < document.getElementById('q1cInputBox').getAttribute('min'))
+				if(howMuchOxygen < contractOxygenMinimum())
 				{
 					showOxygenConfirmBox();
 					break;
 				}
 				
-				suggestMobility('EMT');				
+				suggestMobility('EMT');
 				break;
 
 				
@@ -498,7 +499,7 @@
 		var requirements = "";
 		
 		if(o2){
-			additionalDetails = additionalDetails.concat("<p>" + (selfAdministers ? "Self Administers":"Requires") + " O2" + ((howMuchOxygen == 0) ? " (less than 4 litres)" : " (" + howMuchOxygen + " litres)") + "</p>");
+			additionalDetails = additionalDetails.concat("<p>" + (selfAdministers ? "Self administers O2":"Requires O2" + ((howMuchOxygen == 0) ? " (less than 4 litres)" : " (" + howMuchOxygen + " litres)") + "</p>"));
 			equipment = equipment.concat(selfAdministers?"<p>Oxygen Self Admin</p>":"<p>Oxygen req'd</p>");
 		}
 		if(wheelchairToFrom && !stretcher){
@@ -573,6 +574,75 @@
 		}		
 	}
 	
+	
+	function showQuestion(question) {
+		document.getElementById(question).style.display = 'inline-block';
+	}
+	
+	function showSubQuestion(question) {
+		document.getElementById(question).style.visibility = 'visible';
+		highlightQuestion(question);
+	}
+	
+	function highlightQuestion(question) {
+		document.getElementById(question).className += " highlightQuestion";
+		setTimeout(function(){document.getElementById(question).classList.remove("highlightQuestion");}, 500);		
+	}
+	
+	
+	function changeContract() {
+		contract = document.getElementById("contractSelect").value;
+		
+		if(useCookies)
+		{
+			document.cookie = "contract=" + document.getElementById("contractSelect").selectedIndex + "; expires=Tue, 19 Jan 2038 04:14:07 UTC" + "; path=/";
+		}
+		
+		document.getElementById("contractOxygenMinimum").innerHTML = contractOxygenMinimum();
+		document.getElementById("q1cInputBox").setAttribute('min', contractOxygenMinimum());
+		document.getElementById("q1cInputBox").setAttribute('value', contractOxygenMinimum());
+	}
+	
+	function contractOxygenMinimum() {
+		switch(contract)
+		{
+			case "k&m": return 4;
+			case "uclh": return 6;
+		}
+	}
+	
+	function contractIndexToText(index) {
+		switch(index)
+		{
+			case 0: return "k&m";
+			case 1: return "uclh";
+		}
+	}
+	
+	function parseContractMobility(mobility) {
+		switch(mobility)
+		{
+			case "Walker car":
+				return contract=="k&m" ? mobility : (contract=="uclh" ? "10 Car Suitable" : "null");
+			case "Bariatric Stretcher":
+				return contract=="k&m" ? mobility : (contract=="uclh" ? "BS Bariatric Amb Stretcher" : "null");
+			case "EMT":
+				return contract=="k&m" ? mobility : (contract=="uclh" ? "TC HDU Amb Chair" : "null");
+			case "Seated 1 Man":
+				return contract=="k&m" ? mobility : (contract=="uclh" ? "11 Ambulance walker" : "null");
+			case "Seated 2 Man":
+				return contract=="k&m" ? mobility : (contract=="uclh" ? "12 Amb 2 Crew for lifting" : "null");
+			case "Stretcher":
+				return contract=="k&m" ? mobility : (contract=="uclh" ? "32 Ambulance Stretcher" : "null");
+			case "Wheelchair 1 Man":
+				return contract=="k&m" ? mobility : (contract=="uclh" ? "41 Amb 1 C travel own chair" : "null");
+			case "Wheelchair 2 Man":
+				return contract=="k&m" ? mobility : (contract=="uclh" ? "42 Amb 2 C travel own chair" : "null");
+			default: return "unknown mobility";
+		}
+	}
+	
+	
 	function hideEverything() {
 		
 		hideSuggestionBox();
@@ -600,45 +670,6 @@
 		document.getElementById('q5c').style.visibility = 'hidden';
 		document.getElementById('q6').style.display = 'none';
 		document.getElementById('q6a').style.visibility = 'hidden';
-	}
-	
-	
-	function showQuestion(question) {
-		document.getElementById(question).style.display = 'inline-block';
-	}
-	
-	function showSubQuestion(question) {
-		document.getElementById(question).style.visibility = 'visible';
-		highlightQuestion(question);
-	}
-	
-	function highlightQuestion(question) {
-		document.getElementById(question).className += " highlightQuestion";
-		setTimeout(function(){document.getElementById(question).classList.remove("highlightQuestion");}, 500);		
-	}
-	
-	
-	function changeContract() {
-		contract = document.getElementById("contractSelect").value;
-		
-		if(useCookies)
-		{
-			document.cookie = "contract=" + document.getElementById("contractSelect").selectedIndex + "; expires=Tue, 19 Jan 2038 04:14:07 UTC" + "; path=/";
-		}
-		
-		switch(contract)
-		{
-			case "k&m":
-				document.getElementById("contractOxygenMinimum").innerHTML = "4";
-				document.getElementById("q1bInputBox").setAttribute('min', '4');
-				document.getElementById("q1bInputBox").setAttribute('value', '4');
-				break;
-			case "uclh":
-				document.getElementById("contractOxygenMinimum").innerHTML = "6";
-				document.getElementById("q1bInputBox").setAttribute('min', '6');
-				document.getElementById("q1bInputBox").setAttribute('value', '6');
-				break;
-		}
 	}
 	
 	
@@ -1014,38 +1045,6 @@
 			if (c.indexOf(cookieName) == 0) {
 				return c.substring(cookieName.length, c.length);
 			}
-		}
-	}
-	
-	
-	function contractIndexToText(index) {
-		switch(index)
-		{
-			case 0: return "k&m";
-			case 1: return "uclh";
-		}
-	}
-	
-	function parseContractMobility(mobility) {
-		switch(mobility)
-		{
-			case "Walker car":
-				return contract=="k&m" ? mobility : (contract=="uclh" ? "10 Car Suitable" : "null");
-			case "Bariatric Stretcher":
-				return contract=="k&m" ? mobility : (contract=="uclh" ? "BS Bariatric Amb Stretcher" : "null");
-			case "EMT":
-				return contract=="k&m" ? mobility : (contract=="uclh" ? "TC HDU Amb Chair" : "null");
-			case "Seated 1 Man":
-				return contract=="k&m" ? mobility : (contract=="uclh" ? "11 Ambulance walker" : "null");
-			case "Seated 2 Man":
-				return contract=="k&m" ? mobility : (contract=="uclh" ? "12 Amb 2 Crew for lifting" : "null");
-			case "Stretcher":
-				return contract=="k&m" ? mobility : (contract=="uclh" ? "32 Ambulance Stretcher" : "null");
-			case "Wheelchair 1 Man":
-				return contract=="k&m" ? mobility : (contract=="uclh" ? "41 Amb 1 C travel own chair" : "null");
-			case "Wheelchair 2 Man":
-				return contract=="k&m" ? mobility : (contract=="uclh" ? "42 Amb 2 C travel own chair" : "null");
-			default: return "unknown mobility";
 		}
 	}
 	
