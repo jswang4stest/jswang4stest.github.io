@@ -869,7 +869,6 @@
 				document.cookie = "allValues=" + allValues + "; expires=" + now.toUTCString() + "; path=/";
 			}
 			
-			window.alert("Weight asked: " + weightAsked);
 			hideEverything();
 		}
 	}
@@ -932,9 +931,7 @@
 			document.getElementById('q5b').style.visibility = 		previousAnswers[49];
 			document.getElementById('q5c').style.visibility = 		previousAnswers[50];
 			document.getElementById('q6').style.display = 			previousAnswers[51];
-			document.getElementById('q6a').style.visibility = 		previousAnswers[52];
-			
-			window.alert("Weight asked: " + weightAsked);
+			document.getElementById('q6a').style.visibility = 		previousAnswers[52];			
 		}
 	}
 	
