@@ -1,0 +1,17 @@
+body {
+	background: var(--c_mobility_primary);
+}
+
+.question{
+	border-color: var(--c_mobility_secondary);
+}
+
+.smallConvert{
+	max-width: 20px;
+}
+
+#contractSelectDiv{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}

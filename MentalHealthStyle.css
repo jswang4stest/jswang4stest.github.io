@@ -1,0 +1,7 @@
+body {
+	background: var(--c_mental_health_primary);
+}
+
+.question{
+	border-color: var(--c_mental_health_secondary);
+}

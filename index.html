@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	
+	<head>
+		<link rel="stylesheet" type="text/css" href="MainStyle.css" />
+		<link rel="stylesheet" type="text/css" href="StyleColours.css" />
+		<link rel="stylesheet" type="text/css" href="IndexStyle.css" />
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>	
+		<script src="IndexScript.js" type="text/javascript"></script>
+		<title>PTS Assessments</title>
+		<link rel="icon" href="favicon.ico" />
+	</head>
+
+
+	<body onload="ChangeTab('MobilityAssessment')">
+		<ul id="navbar" style="white-space: nowrap">
+			<li><img src="Logo.png" id="g4slogo" class="cant_select" style="cursor: pointer" alt="G4S" onclick="window.open('README.html', '_blank')"/></li>  			
+			<li id="MobilityAssessmentTab" onclick="ChangeTab('MobilityAssessment')" class="tab cant_select tab_selected dark_tab"><a>Mobility Assessment</a></li>
+			<li id="MentalHealthAssessmentTab" onclick="ChangeTab('MentalHealthAssessment')" class="tab cant_select"><a>Mental Health Assessment</a></li>
+			<label style="float:right; color: red; background-color: white">BETA - send feedback to jeremy.swan@uk.g4s.com</label>
+		</ul>
+		
+		<iframe id="MobilityAssessmentFrame" class="frame" style="display: none" src="MobilityAssessment.html"></iframe>
+		<iframe id="MentalHealthAssessmentFrame" class="frame" style="display: none" src="MentalHealthAssessment.html"></iframe>
+		
+	</body>
+</html>

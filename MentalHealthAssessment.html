@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	
+	<head>
+		<link rel="stylesheet" type="text/css" href="MainStyle.css" />
+		<link rel="stylesheet" type="text/css" href="StyleColours.css" />
+		<link rel="stylesheet" type="text/css" href="MentalHealthStyle.css" />
+
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js" type="text/javascript"></script>
+		<script src="MentalHealthScript.js" type="text/javascript"></script>
+		<title>PTS Mental Health Assessment</title>
+		<link rel="icon" href="favicon.ico" />
+	</head>
+
+
+	<body onload="hideEverything();">
+	
+		<div id="activeXEnablePromptOverlay">
+			<div id="activeXPrompt" class="modalBox">
+				<h3>This page requires ActiveX to work</h3>
+				<h4>Please enable ActiveX and refresh the page</h4>
+			</div>
+		</div>
+		
+		<div id="modalOverlay">
+			<div id="reviewPromptModal" class="modalBox">
+				<h3>G4S cannot take the booking</h3>
+				<h4>until a review, and risk assessment, of the patient's mental health have been undertaken by a clinician</h4>
+				<button onclick="restartAssessment()">Restart</button>
+			</div>
+			<div id="assessPromptModal" class="modalBox">
+				<h3>Please conduct a patient risk assessment before continuing with the booking</h3>
+				<button onclick="hideAssessPromptModal(); document.getElementById('q1aDropdown').value = ''; showSubQuestion('q1a');">Continue</button>
+			</div>
+			<div id="successModal" class="modalBox">
+				<h3>G4S will move the patient</h3>
+				<button onclick="restartAssessment()">Restart</button>
+			</div>
+			<div id="trustProvideModal" class="modalBox">
+				<h3>The Trust will provide a fully briefed and competent escort, or will provide their own transport</h3>
+				<button onclick="restartAssessment()">Restart</button>
+			</div>
+			<div id="successTrustProvideModal" class="modalBox">
+				<h3>G4S is authorised to move the patient</h3>
+				<h4>Only with an escort provided by the Trust</h4>
+				<button onclick="restartAssessment()">Restart</button>
+			</div>
+			<div id="provideBriefingModal" class="modalBox">
+				<h3>Provide a full briefing to the medical escort</h3>
+				<button onclick="hideProvideBriefingModal(); document.getElementById('q4aDropdown').value = ''; showSubQuestion('q4a');">Restart</button>
+			</div>
+		</div> 
+		
+		<h1> PTS Mental Health Assessment </h1>
+
+		<div class="questionboxes">
+
+			<div id="q1" class="question"> 1. Are you aware of the patient's mental health history?
+				<select id="q1Dropdown" onchange="updateAnswers('q1')">
+					<option value="Empty" style="display: none"></option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+				</select>
+				<div id="q1a" class="subquestion"> 1a. Has the patient been risk assessed by a clinician?
+					<select id="q1aDropdown" onchange="updateAnswers('q1a')">
+						<option value="Empty" style="display: none"></option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					</select>
+				</div>
+			</div>
+
+			<div id="q2" class="question"> 2. Is the patient at risk of absconding or self harm?
+				<select id="q2Dropdown" onchange="updateAnswers('q2')">
+					<option value="Empty" style="display: none"></option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+				</select>
+				<div id="q2a" class="subquestion"> 2a. Will the patient be under the influence of drugs or alcohol at the time of being collected?
+					<select id="q2aDropdown" onchange="updateAnswers('q2a')">
+						<option value="Empty" style="display: none"></option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					</select>
+				</div>
+				<div id="q2b" class="subquestion"> 2b. Will the patient travel under medication/sedation?
+					<select id="q2bDropdown" onchange="updateAnswers('q2b')">
+						<option value="Empty" style="display: none"></option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					</select>
+				</div>
+			</div>
+			
+			<div id="q3" class="question"> 3. Will the patient travel with medication/sedation?
+				<select id="q3Dropdown" onchange="updateAnswers('q3')">
+					<option value="Empty" style="display: none"></option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+				</select>
+				<div id="q3a" class="subquestion"> 3a. Does the patient self-medicate?
+					<select id="q3aDropdown" onchange="updateAnswers('q3a')">
+						<option value="Empty" style="display: none"></option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					</select>
+				</div>
+			</div>
+			
+			<div id="q4" class="question"> 4. Is a medical escort (i.e. nurse/HCA/doctor) travelling with the patient?
+				<select id="q4Dropdown" onchange="updateAnswers('q4')">
+					<option value="Empty" style="display: none"></option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+				</select>
+				<div id="q4a" class="subquestion"> 4a. Is the medical escort fully aware of the patient's condition, fully briefed and competent to deal with the patient?
+					<select id="q4aDropdown" onchange="updateAnswers('q4a')">
+						<option value="Empty" style="display: none"></option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					</select>
+				</div>
+			</div>
+
+		</div>
+		
+	</body>	
+
+</html>

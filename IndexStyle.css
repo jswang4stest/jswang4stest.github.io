@@ -1,0 +1,126 @@
+html{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	font-family: helvetica;
+	margin-right: 0;
+}
+body{
+	margin: 0;
+	padding: 0;
+}
+
+#navbar{
+	white-space: nowrap;
+	
+	font-size: 18px;
+	background: inherit;
+	display: block;
+	margin: 0;
+	padding: 0;
+	padding-top: 5px;
+	width: 100%;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	
+	color: black;
+	background-color: white;
+	font-weight: bold;
+	
+	cursor: default;
+	
+	z-index: 10;
+}
+
+#navbar li{
+	list-style: none;
+	display: inline-block;
+}
+#navbar li a{
+	position: relative;
+	display: block;
+	padding: 15px;
+	text-align: center;
+	text-decoration: none;
+	border-bottom: none;
+}
+#g4slogo{
+	max-width: 50px;
+	max-height: 50px;
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+}
+#g4slogo:hover{
+	opacity: 0.4;
+}
+.tab{
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+.tab:hover{
+	background-color: #bbdefb;
+	cursor: pointer;
+}
+.tab_selected{
+	position: relative;
+	background-color: #e3f2fd;
+	box-shadow: 0px 0px 5px black;
+	z-index: 1000;
+}
+.tab_selected:hover{
+	background-color: #e3f2fd;
+	cursor: pointer;
+}
+
+.dark_tab::after{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+
+	background-color: black;
+	opacity: 0.4;
+	z-index: 1000;
+}
+
+#MobilityAssessmentTab:hover{
+	background-color: var(--c_mobility_secondary);
+}
+#MobilityAssessmentTab.tab_selected{
+	background-color: var(--c_mobility_primary);
+}
+#MobilityAssessmentTab.tab_selected:hover{
+	background-color: var(--c_mobility_primary);
+}
+#MentalHealthAssessmentTab:hover{
+	background-color: var(--c_mental_health_secondary);
+}
+#MentalHealthAssessmentTab.tab_selected{
+	background-color: var(--c_mental_health_primary);
+}
+#MentalHealthAssessmentTab.tab_selected:hover{
+	background-color: var(--c_mental_health_primary);
+}
+
+iframe{
+	height: 100vh;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	border: none;
+	z-index: 10;
+	box-shadow: 0px 0px 4px black;
+}
+
+.cant_select{
+	user-drag: none; 
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
