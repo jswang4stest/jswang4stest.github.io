@@ -765,9 +765,18 @@
 			previousAnswers.push(q2StoreNextQuestion);	//7
 			previousAnswers.push(howMuchOxygen);		//8
 			previousAnswers.push(weight);				//9
-			previousAnswers.push(travelsInWheelchair);	//10
-			previousAnswers.push(stretcher);			//11
-			previousAnswers.push(wheelchairVehicle);	//12
+			previousAnswers.push(weightAsked);			//10
+			previousAnswers.push(travelsInWheelchair);	//11
+			previousAnswers.push(stretcher);			//12
+			previousAnswers.push(wheelchairVehicle);	//13
+			
+			previousAnswers.push("placeholder");		//14
+			previousAnswers.push("placeholder");		//15
+			previousAnswers.push("placeholder");		//16
+			previousAnswers.push("placeholder");		//17
+			previousAnswers.push("placeholder");		//18
+			previousAnswers.push("placeholder");		//19
+			
 			
 			updateEquipment("o2", false);
 			updateEquipment("wheelchairToFrom", false);
@@ -860,6 +869,7 @@
 				document.cookie = "allValues=" + allValues + "; expires=" + now.toUTCString() + "; path=/";
 			}
 			
+			window.alert("Weight asked: " + weightAsked);
 			hideEverything();
 		}
 	}
@@ -882,46 +892,49 @@
 			q2StoreNextQuestion = 					previousAnswers[7];
 			howMuchOxygen = 						previousAnswers[8];
 			weight = 								previousAnswers[9];
-			travelsInWheelchair = 					previousAnswers[10] == "true";
-			stretcher = 							previousAnswers[11] == "true";
-			wheelchairVehicle = 					previousAnswers[12] == "true";
+			weightAsked = 							previousAnswers[10] == "true";
+			travelsInWheelchair = 					previousAnswers[11] == "true";
+			stretcher = 							previousAnswers[12] == "true";
+			wheelchairVehicle = 					previousAnswers[13] == "true";
 			
 			
-			document.getElementById('q1Dropdown').selectedIndex = 	previousAnswers[13];
-			document.getElementById('q1aDropdown').selectedIndex = 	previousAnswers[14];
-			document.getElementById('q1bInputBox').value = 			previousAnswers[15];			
-			document.getElementById('q2Dropdown').selectedIndex = 	previousAnswers[16];
-			document.getElementById('q2aDropdown').selectedIndex = 	previousAnswers[17];
-			document.getElementById('q2bDropdown').selectedIndex = 	previousAnswers[18];
-			document.getElementById('q2cDropdown').selectedIndex = 	previousAnswers[19];
-			document.getElementById('q2dDropdown').selectedIndex = 	previousAnswers[20];
-			document.getElementById('q2eInputBox').value = 			previousAnswers[21];			
-			document.getElementById('q3Dropdown').selectedIndex = 	previousAnswers[22];			
-			document.getElementById('q4Dropdown').selectedIndex = 	previousAnswers[23];			
-			document.getElementById('q5Dropdown').selectedIndex = 	previousAnswers[24];
-			document.getElementById('q5aDropdown').selectedIndex = 	previousAnswers[25];
-			document.getElementById('q5bDropdown').selectedIndex = 	previousAnswers[26];
-			document.getElementById('q5cInputBox').value = 			previousAnswers[27];			
-			document.getElementById('q6Dropdown').selectedIndex = 	previousAnswers[28];
-			document.getElementById('q6aInputBox').value = 			previousAnswers[29];
+			document.getElementById('q1Dropdown').selectedIndex = 	previousAnswers[20];
+			document.getElementById('q1aDropdown').selectedIndex = 	previousAnswers[21];
+			document.getElementById('q1bInputBox').value = 			previousAnswers[22];			
+			document.getElementById('q2Dropdown').selectedIndex = 	previousAnswers[23];
+			document.getElementById('q2aDropdown').selectedIndex = 	previousAnswers[24];
+			document.getElementById('q2bDropdown').selectedIndex = 	previousAnswers[25];
+			document.getElementById('q2cDropdown').selectedIndex = 	previousAnswers[26];
+			document.getElementById('q2dDropdown').selectedIndex = 	previousAnswers[27];
+			document.getElementById('q2eInputBox').value = 			previousAnswers[28];			
+			document.getElementById('q3Dropdown').selectedIndex = 	previousAnswers[29];			
+			document.getElementById('q4Dropdown').selectedIndex = 	previousAnswers[30];			
+			document.getElementById('q5Dropdown').selectedIndex = 	previousAnswers[31];
+			document.getElementById('q5aDropdown').selectedIndex = 	previousAnswers[32];
+			document.getElementById('q5bDropdown').selectedIndex = 	previousAnswers[33];
+			document.getElementById('q5cInputBox').value = 			previousAnswers[34];			
+			document.getElementById('q6Dropdown').selectedIndex = 	previousAnswers[35];
+			document.getElementById('q6aInputBox').value = 			previousAnswers[36];
 			
 			
-			document.getElementById('q1a').style.visibility = 		previousAnswers[30];
-			document.getElementById('q1b').style.visibility = 		previousAnswers[31];
-			document.getElementById('q2').style.display = 			previousAnswers[32];
-			document.getElementById('q2a').style.visibility = 		previousAnswers[33];
-			document.getElementById('q2b').style.visibility = 		previousAnswers[34];
-			document.getElementById('q2c').style.visibility = 		previousAnswers[35];
-			document.getElementById('q2d').style.visibility = 		previousAnswers[36];
-			document.getElementById('q2e').style.visibility = 		previousAnswers[37];
-			document.getElementById('q3').style.display = 			previousAnswers[38];
-			document.getElementById('q4').style.display = 			previousAnswers[39];
-			document.getElementById('q5').style.display = 			previousAnswers[40];
-			document.getElementById('q5a').style.visibility = 		previousAnswers[41];
-			document.getElementById('q5b').style.visibility = 		previousAnswers[42];
-			document.getElementById('q5c').style.visibility = 		previousAnswers[43];
-			document.getElementById('q6').style.display = 			previousAnswers[44];
-			document.getElementById('q6a').style.visibility = 		previousAnswers[45];
+			document.getElementById('q1a').style.visibility = 		previousAnswers[37];
+			document.getElementById('q1b').style.visibility = 		previousAnswers[38];
+			document.getElementById('q2').style.display = 			previousAnswers[39];
+			document.getElementById('q2a').style.visibility = 		previousAnswers[40];
+			document.getElementById('q2b').style.visibility = 		previousAnswers[41];
+			document.getElementById('q2c').style.visibility = 		previousAnswers[42];
+			document.getElementById('q2d').style.visibility = 		previousAnswers[43];
+			document.getElementById('q2e').style.visibility = 		previousAnswers[44];
+			document.getElementById('q3').style.display = 			previousAnswers[45];
+			document.getElementById('q4').style.display = 			previousAnswers[46];
+			document.getElementById('q5').style.display = 			previousAnswers[47];
+			document.getElementById('q5a').style.visibility = 		previousAnswers[48];
+			document.getElementById('q5b').style.visibility = 		previousAnswers[49];
+			document.getElementById('q5c').style.visibility = 		previousAnswers[50];
+			document.getElementById('q6').style.display = 			previousAnswers[51];
+			document.getElementById('q6a').style.visibility = 		previousAnswers[52];
+			
+			window.alert("Weight asked: " + weightAsked);
 		}
 	}
 	
