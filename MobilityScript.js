@@ -56,6 +56,8 @@
 		}
 		
 		changeContract();
+		
+		window.alert("Contract: " + contract);
 	}
 	
 	function updateAnswers(sender) {
