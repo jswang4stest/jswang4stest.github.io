@@ -120,16 +120,23 @@
 					<option value="Yes">Yes</option>
 					<option value="No">No</option>
 				</select>
-				<div id="q1a" class="subquestion"> 1a. More than <span id="contractOxygenMinimum">4</span> litres?
+				<div id="q1a" class="subquestion"> 1a. Does the patient self-administer?
 					<select id="q1aDropdown" onchange="updateAnswers('q1a')">
 						<option value="Empty" style="display: none"></option>
 						<option value="Yes">Yes</option>
 						<option value="No">No</option>
 					</select>
 				</div>
-				<div id="q1b" class="subquestion"><center> 1b. How many litres?:
-				<input type="number" id="q1bInputBox" min="4" max="99" value="4"/>
-				<button id="q1bConfirmButton" onclick="updateAnswers('q1b')">Confirm</button></center>
+				<div id="q1b" class="subquestion"> 1b. Will the patient need more than <span id="contractOxygenMinimum">4</span> litres?
+					<select id="q1bDropdown" onchange="updateAnswers('q1b')">
+						<option value="Empty" style="display: none"></option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					</select>
+				</div>
+				<div id="q1c" class="subquestion"><center> 1c. How many litres?:
+					<input type="number" id="q1cInputBox" min="4" max="99" value="4"/>
+					<button id="q1cConfirmButton" onclick="updateAnswers('q1c')">Confirm</button></center>
 				</div>
 			</div>
 			
