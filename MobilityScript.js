@@ -888,7 +888,7 @@
 				document.cookie = "allValues=" + allValues + "; expires=" + now.toUTCString() + "; path=/";
 			}
 			
-			hideEverything();
+			setup();
 		}
 	}
 	
