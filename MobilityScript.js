@@ -45,6 +45,7 @@
 		hideEverything();
 		checkCookies();
 		
+		window.alert("setup");
 		if(useCookies)
 		{
 			window.alert("contract index: " + getCookie("contract"));
