@@ -591,11 +591,11 @@
 	
 	
 	function changeContract() {
-		contract = document.getElementById("contractSelect").index;
+		contract = document.getElementById("contractSelect").value;
 		
 		if(useCookies)
 		{
-			document.cookie = "contract=" + contract + "; expires=Tue, 19 Jan 2038 04:14:07 UTC" + "; path=/";
+			document.cookie = "contract=" + document.getElementById("contractSelect").index + "; expires=Tue, 19 Jan 2038 04:14:07 UTC" + "; path=/";
 		}
 		
 		switch(contract)
