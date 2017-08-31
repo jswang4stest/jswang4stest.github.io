@@ -47,13 +47,18 @@
 		checkCookies();
 		
 		if(useCookies) {
+			window.alert("Debug 1");
 			document.getElementById("contractSelect").selectedIndex = getCookie("contract");
+			window.alert("Debug 2");
 		}
 		else {
 			//fallback default
+			window.alert("Debug 3");
 			document.getElementById("contractSelect").selectedIndex = 0;
 			contract = "k&m";
+			window.alert("Debug 4");
 		}
+		window.alert("Debug 5");
 		
 		changeContract();
 		
@@ -604,11 +609,15 @@
 	
 	
 	function changeContract() {
+		window.alert("Debug 6");
 		contract = document.getElementById("contractSelect").value;
+		window.alert("Debug 7");
 		
 		if(useCookies)
 		{
+			window.alert("Debug 8");
 			document.cookie = "contract=" + document.getElementById("contractSelect").selectedIndex + "; expires=Tue, 19 Jan 2038 04:14:07 UTC" + "; path=/";
+			window.alert("Debug 9");
 		}
 		
 		switch(contract)
@@ -617,11 +626,13 @@
 				document.getElementById("contractOxygenMinimum").innerHTML = "4";
 				document.getElementById("q1bInputBox").setAttribute('min', '4');
 				document.getElementById("q1bInputBox").setAttribute('value', '4');
+				window.alert("Debug 10");
 				break;
 			case "uclh":
 				document.getElementById("contractOxygenMinimum").innerHTML = "6";
 				document.getElementById("q1bInputBox").setAttribute('min', '6');
 				document.getElementById("q1bInputBox").setAttribute('value', '6');
+				window.alert("Debug 11");
 				break;
 		}
 	}
