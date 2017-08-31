@@ -462,7 +462,7 @@
 	
 	
 	function suggestMobility(mobility) {
-		document.getElementById('suggestion').innerHTML = parseContractMobility(contractIndexToText(mobility));
+		document.getElementById('suggestion').innerHTML = parseContractMobility(mobility);
 		showSuggestionBox();
 		
 		var additionalDetails = "";
@@ -591,7 +591,7 @@
 	
 	function changeContract() {
 		contract = document.getElementById("contractSelect").value;
-		
+		window.alert("contract: " + contract);
 		if(useCookies)
 		{
 			document.cookie = "contract=" + document.getElementById("contractSelect").selectedIndex + "; expires=Tue, 19 Jan 2038 04:14:07 UTC" + "; path=/";
@@ -991,6 +991,7 @@
 				return contract=="k&m" ? mobility : (contract=="uclh" ? "41 Amb 1 C travel own chair" : "null");
 			case "Wheelchair 2 Man":
 				return contract=="k&m" ? mobility : (contract=="uclh" ? "42 Amb 2 C travel own chair" : "null");
+			default: return "unknown mobility";
 		}
 	}
 	
