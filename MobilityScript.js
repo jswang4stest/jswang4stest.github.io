@@ -41,14 +41,18 @@
 	
 	var contract;
 	
+	
 	function setup() {
 		hideEverything();
 		checkCookies();
 		
-		if(useCookies)
-		{
+		if(useCookies) {
 			document.getElementById("contractSelect").selectedIndex = getCookie("contract");
 			changeContract();
+		}
+		else {
+			//fallback default
+			contract = "k&m";
 		}
 	}
 	
@@ -83,8 +87,13 @@
 			case 'q1b':
 				
 				howMuchOxygen = document.getElementById('q1bInputBox').value;
-				suggestMobility('EMT');
+				if(howMuchOxygen < document.getElementById('q1bInputBox').getAttribute('min'))
+				{
+					showOxygenConfirmBox();
+					break;
+				}
 				
+				suggestMobility('EMT');				
 				break;
 
 				
@@ -553,6 +562,7 @@
 		hideWheelchairCheckBox();
 		hideWeightConfirmBox();
 		hideWeightContradictionBox();
+		hideOxygenConfirmBox();
 		hideActiveXPrompt();
 		
 		document.getElementById('q1a').style.visibility = 'hidden';
@@ -661,6 +671,15 @@
 	function hideWeightContradictionBox() {
 		document.getElementById('modalOverlay').style.visibility = 'hidden';
 		document.getElementById('weightContradictionBox').style.visibility = 'hidden';
+	}
+	
+	function showOxygenConfirmBox() {
+		document.getElementById('modalOverlay').style.visibility = 'visible';
+		document.getElementById('oxygenConfirmBox').style.visibility = 'visible';
+	}
+	function hideOxygenConfirmBox() {
+		document.getElementById('modalOverlay').style.visibility = 'hidden';
+		document.getElementById('oxygenConfirmBox').style.visibility = 'hidden';
 	}
 	
 	

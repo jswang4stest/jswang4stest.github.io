@@ -67,6 +67,11 @@
 				<h4>The weight you have entered is more than 114kg, but you have already said the patient is less than 114kg</h4>
 				<p><button id="weightContradictionContinueButton" onclick="hideWeightContradictionBox(); weightAsked = false; updateAnswers('q6a');">Confirm</button>
 				<button id="weightContradictionReturnButton" onclick="hideWeightContradictionBox(); showSubquestion('q6a');">Return</button></p>
+			</div>			
+			<div id="oxygenConfirmBox" class="modalBox">
+				<h3>Please confirm the amount of oxygen</h3>
+				<h4>The amount you have entered is less than the contract's minimum</h4>
+				<button onclick="hideOxygenConfirmBox();">Return</button>
 			</div>
 		</div>
 		
