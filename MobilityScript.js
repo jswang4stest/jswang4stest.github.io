@@ -493,8 +493,7 @@
 		if(weight > -1){
 			additionalDetails = additionalDetails.concat("<p>Weight: " + weight + "kg</p>");
 		}
-		if(steps)
-		{
+		if(steps) {
 			additionalDetails = additionalDetails.concat("<p>Steps on property (if possible, add how many steps there are)</p>");
 		}
 		
@@ -965,7 +964,7 @@
 	}
 	
 	
-	function mobilityIndexToText(index) {
+	function contractIndexToText(index) {
 		switch(index)
 		{
 			case 0: return "k&m";
