@@ -45,7 +45,6 @@
 		hideEverything();
 		checkCookies();
 		
-		window.alert("setup");
 		if(useCookies)
 		{
 			window.alert("contract index: " + getCookie("contract"));
@@ -598,6 +597,7 @@
 		if(useCookies)
 		{
 			document.cookie = "contract=" + document.getElementById("contractSelect").index + "; expires=Tue, 19 Jan 2038 04:14:07 UTC" + "; path=/";
+			window.alert("cookie index: " + document.getElementById("contractSelect").index);
 		}
 		
 		switch(contract)
