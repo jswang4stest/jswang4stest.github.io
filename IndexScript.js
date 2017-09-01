@@ -10,7 +10,7 @@ function ChangeTab(assessment)
 		{
 			document.getElementById(assessment + "Frame").contentWindow.setup();
 		}
-		document.getElementById(assessment + "Frame").contentWindow.restartAssessment();
+		//document.getElementById(assessment + "Frame").contentWindow.restartAssessment();
 		ClearActiveTabs();
 		ClearActiveFrames();
 		document.getElementById(assessment + "Frame").style.display = "block";
