@@ -45,7 +45,6 @@
 	
 	
 	function setup() {
-		window.alert("debug");
 		hideEverything();
 		checkCookies();
 		
@@ -59,8 +58,6 @@
 		}
 		
 		changeContract();
-		
-		//window.alert("Contract: " + contract);
 	}
 	
 	
