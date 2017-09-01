@@ -45,11 +45,8 @@
 	
 	
 	function setup() {
-		window.alert("debug 1");
 		hideEverything();
-		window.alert("debug 2");
 		checkCookies();
-		window.alert("debug 3");
 		
 		if(useCookies) {
 			document.getElementById("contractSelect").selectedIndex = getCookie("contract");
@@ -60,9 +57,7 @@
 			contract = "k&m";
 		}
 		
-		window.alert("debug 4");
 		changeContract();
-		window.alert("debug 5");
 	}
 	
 	
