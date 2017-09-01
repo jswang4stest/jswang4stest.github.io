@@ -3,6 +3,7 @@ var activeAssessment = "";
 
 function ChangeTab(assessment)
 {
+		window.alert("debug");
 	if(assessment != activeAssessment)
 	{
 		activeAssessment = assessment;
