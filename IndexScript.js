@@ -1,4 +1,4 @@
-var i;
+
 var activeAssessment = "";
 
 function ChangeTab(assessment)
@@ -11,7 +11,7 @@ function ChangeTab(assessment)
 		if(assessment == "MobilityAssessment")
 		{
 			window.alert("debug3");
-			window.frames['MobilityAssessmentFrame'].window.setup();
+			window.frames["MobilityAssessmentFrame"].window.setup();
 		}
 		window.alert("debug4");
 		//document.getElementById(assessment + "Frame").contentWindow.restartAssessment();
@@ -28,6 +28,7 @@ function ChangeTab(assessment)
 
 function ClearActiveTabs()
 {
+	var i;
 	var tabs = document.getElementsByClassName("tab");
 	for(i = 0; i < tabs.length; i++)
 	{
@@ -37,6 +38,7 @@ function ClearActiveTabs()
 
 function ClearActiveFrames()
 {
+	var i;
 	var frames = document.getElementsByClassName("frame");
 	for(i = 0; i < frames.length; i++)
 	{
