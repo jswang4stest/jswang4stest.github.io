@@ -3,18 +3,25 @@ var activeAssessment = "";
 
 function ChangeTab(assessment)
 {
+		window.alert("debug1");
 	if(assessment != activeAssessment)
 	{
+		window.alert("debug2");
 		activeAssessment = assessment;
 		if(assessment == "MobilityAssessment")
 		{
+		window.alert("debug3");
 			document.getElementById(assessment + "Frame").contentWindow.setup();
 		}
+		window.alert("debug4");
 		//document.getElementById(assessment + "Frame").contentWindow.restartAssessment();
 		ClearActiveTabs();
+		window.alert("debug5");
 		ClearActiveFrames();
+		window.alert("debug6");
 		document.getElementById(assessment + "Frame").style.display = "block";
 		document.getElementById(assessment + 'Tab').classList.add("tab_selected");
+		window.alert("debug7");
 	}
 }
 
