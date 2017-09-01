@@ -704,7 +704,7 @@
 		document.getElementById('modalOverlay').style.visibility = 'hidden';
 		document.getElementById('wheelchairCheck').style.visibility = 'hidden';
 	}
-
+	
 	function showWeightConfirmBox() {
 		document.getElementById('modalOverlay').style.visibility = 'visible';
 		document.getElementById('weightConfirmBox').style.visibility = 'visible';
@@ -713,7 +713,7 @@
 		document.getElementById('modalOverlay').style.visibility = 'hidden';
 		document.getElementById('weightConfirmBox').style.visibility = 'hidden';
 	}
-
+	
 	function showWeightContradictionBox() {
 		document.getElementById('modalOverlay').style.visibility = 'visible';
 		document.getElementById('weightContradictionBox').style.visibility = 'visible';
@@ -863,6 +863,7 @@
 			weight = -1;
 			travelsInWheelchair = false;
 			stretcher = false;
+			weightAsked = false;
 			
 			wheelchairVehicle = false;
 			
