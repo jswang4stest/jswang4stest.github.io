@@ -418,7 +418,7 @@
 							suggestMobility('Wheelchair 2 Man');
 						}
 						else
-						{						
+						{
 							suggestMobility('Seated 2 Man');
 						}
 					}
@@ -956,7 +956,6 @@
 			updateEquipment("bariatricWheelchair", 	previousAnswers[2] == "true");
 			updateRequirements("bariatric", 		previousAnswers[3] == "true");
 			updateRequirements("carryChair", 		previousAnswers[4] == "true");
-			updateRequirements("bringWheelchair", 	previousAnswers[5] == "true");
 			
 			steps = 								previousAnswers[6] == "true";
 			q2StoreNextQuestion = 					previousAnswers[7];
