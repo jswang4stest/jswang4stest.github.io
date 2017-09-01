@@ -9,9 +9,9 @@
 	//	CarryChair
 	//	BringWheelchair
 	
-	const maxWheelchairWeight= 300; //kg
-	const maxCarryWeight= 158; //kg, 25st
-	const bariatricWeight = 114; //kg, 18st
+	var maxWheelchairWeight= 300; //kg
+	var maxCarryWeight= 158; //kg, 25st
+	var bariatricWeight = 114; //kg, 18st
 	
 	var iterator = 0;
 	
