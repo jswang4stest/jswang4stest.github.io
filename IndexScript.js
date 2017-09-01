@@ -11,7 +11,8 @@ function ChangeTab(assessment)
 		if(assessment == "MobilityAssessment")
 		{
 		window.alert("debug3");
-			document.getElementById(assessment + "Frame").contentWindow.setup();
+			document.getElementById("MobilityAssessmentFrame").contentWindow.setup();
+			window.frames['MobilityAssessmentFrame'].window.setup();
 		}
 		window.alert("debug4");
 		//document.getElementById(assessment + "Frame").contentWindow.restartAssessment();
