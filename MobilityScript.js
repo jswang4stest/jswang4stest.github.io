@@ -566,8 +566,8 @@
 		document.getElementById("requirementsDiv").innerHTML = requirements;
 		document.getElementById("equipmentDiv").innerHTML = equipment;
 		
-		parent.document.getElementById("txtJrnyMob").style.visibility = "hidden";
 		window.alert("Attempting to populate parent");
+		parent.document.getElementById("txtJrnyMob").value = mobility;
 	}
 	
 	function getMobilityDescription(mobility){
