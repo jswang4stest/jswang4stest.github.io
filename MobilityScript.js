@@ -594,9 +594,6 @@
 		document.getElementById("mobilityDescription").innerHTML = getMobilityDescription(mobility);
 		document.getElementById("requirementsDiv").innerHTML = requirements;
 		document.getElementById("equipmentDiv").innerHTML = equipment;
-		
-		//window.alert("Attempting to populate parent");
-		parent.document.getElementById("txtJrnyMob").value = mobility;
 	}
 	
 	function getMobilityDescription(mobility){
