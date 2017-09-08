@@ -15,7 +15,7 @@ body {
 	position: fixed;
 	
 	left: 0px;
-	top: 10%;
+	top: 5%;
 	
 	float:left;
 	
@@ -25,7 +25,7 @@ body {
 	font-size: 14px;
 	
 	width: 120px;
-	max-height: 600px;
+	max-height: 85vh;
 	overflow: auto;
 	
 	background-color: white;

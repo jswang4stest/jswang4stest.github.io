@@ -47,6 +47,13 @@
 			<div id="referToControlBox" class="modalBox">
 				<h3>This journey may require a risk assessment - please refer to control</h3>
 				<h4 id="referReason">reason</h4>
+				<h4><em>CLCH: 0800 953 0192</em></h4>
+				<h4><em>RNOH: 0800 953 4138</em></h4>
+				<h4><em>Lewisham: 0800 953 0370</em></h4>
+				<h4><em>QEH: 0800 953 0372</em></h4>
+				<h4><em>BHR: 0208 598 2342</em></h4>
+				<h4><em>Kent: 0800 096 0211</em></h4>
+				<h4><em>UCLH: </em></h4>
 				<br />
 				<p>
 					<button id="referConfirmButton" onclick="restartAssessment()">OK</button>
@@ -56,6 +63,12 @@
 			<div id="wheelchairCheck" class="modalBox">
 				<h3>Some electric wheelchairs cannot be taken on our vehicles</h3>
 				<h4>Please contact control and provide details of the wheelchair to confirm we are able to transport the patient</h4>
+				<h4><em>CLCH: 0800 953 0192</em></h4>
+				<h4><em>RNOH: 0800 953 4138</em></h4>
+				<h4><em>Lewisham: 0800 953 0370</em></h4>
+				<h4><em>QEH: 0800 953 0372</em></h4>
+				<h4><em>BHR: 0208 598 2342</em></h4>
+				<h4><em>Kent: 0800 096 0211</em></h4>
 				<button id="wheelchairContinueButton" onclick="
 				updateEquipment('electricWheelchair', true);
 				hideWheelchairCheckBox();">Continue</button>
@@ -104,6 +117,8 @@
 			<div id="infoRequirements" class="infoSection"><h1>Requirements</h1>
 				<div id="infoBariatric" class="infoValue" onclick="xupdateRequirements('bariatric', !bariatric)">Bariatric</div>
 				<div id="infoCarryChair" class="infoValue" onclick="xupdateRequirements('carryChair', !carryChair)">Carry Chair</div>
+				<div id="info3ManLift" class="infoValue" onclick="xupdateRequirements('3ManLift', !threeManLift)">3 Man Lift</div>
+				<div id="info4ManLift" class="infoValue" onclick="xupdateRequirements('4ManLift', !fourManLift)">4 Man Lift</div>
 				<!--<div id="infoBringWheelchair" class="infoValue" onclick="xupdateRequirements('bringWheelchair', !bringWheelchair)">Bring Wheelchair</div> -->
 			</div>
 			
@@ -144,54 +159,54 @@
 				</div>
 			</div>
 			
-			
-			<div id="q2" class="question"> 2. Will the patient need to be in a wheelchair to and from the vehicle?
+
+			<div id="q2" class="question"> 2. Is the patient mobile?
 				<select id="q2Dropdown" onchange="updateAnswers('q2')">
 					<option value="Empty" style="display: none"></option>
 					<option value="Yes">Yes</option>
 					<option value="No">No</option>
 				</select>
-				<div id="q2a" class="subquestion"> 2a. Would the patient be able to transfer out of their wheelchair?
-					<select id="q2aDropdown" onchange="updateAnswers('q2a')">
-						<option value="Empty" style="display: none"></option>
-						<option value="Yes">Yes</option>
-						<option value="No">No</option>
-					</select>
-				</div>
-				<div id="q2b" class="subquestion"> 2b. Will the patient provide their own wheelchair?
-					<select id="q2bDropdown" onchange="updateAnswers('q2b')">
-						<option value="Empty" style="display: none"></option>
-						<option value="Yes">Yes</option>
-						<option value="No">No</option>
-					</select>
-				</div>
-				<div id="q2c" class="subquestion"> 2c. Is the patient's wheelchair manual or electric?
-					<select id="q2cDropdown" onchange="updateAnswers('q2c')">
-						<option value="Empty" style="display: none"></option>
-						<option value="Manual">Manual</option>
-						<option value="Electric">Electric</option>
-					</select>
-				</div>
-				<div id="q2d" class="subquestion"> 2d. Is the patient over 18 stone/114kg?
-					<select id="q2dDropdown" onchange="updateAnswers('q2d')">
-						<option value="Empty" style="display: none"></option>
-						<option value="Yes">Yes</option>
-						<option value="No">No</option>
-					</select>
-				</div>
-				<div id="q2e" class="subquestion"> 2e. What is the patient's weight (in kg)?<br />
-					<input type="number" id="q2eInputBox" value="114" min="114" max="999"/>kg
-					<button id="q2eConfirmButton" onclick="updateAnswers('q2e')">Confirm</button>
-				</div>
 			</div>
 
-
-			<div id="q3" class="question"> 3. Can the patient make their way to the vehicle unassisted?
+			
+			<div id="q3" class="question"> 3. Will the patient need to be in a wheelchair to and from the vehicle?
 				<select id="q3Dropdown" onchange="updateAnswers('q3')">
 					<option value="Empty" style="display: none"></option>
 					<option value="Yes">Yes</option>
 					<option value="No">No</option>
 				</select>
+				<div id="q3a" class="subquestion"> 3a. Would the patient be able to transfer out of the wheelchair?
+					<select id="q3aDropdown" onchange="updateAnswers('q3a')">
+						<option value="Empty" style="display: none"></option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					</select>
+				</div>
+				<div id="q3b" class="subquestion"> 3b. Will the patient provide their own wheelchair?
+					<select id="q3bDropdown" onchange="updateAnswers('q3b')">
+						<option value="Empty" style="display: none"></option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					</select>
+				</div>
+				<div id="q3c" class="subquestion"> 3c. Is the patient's wheelchair manual or electric?
+					<select id="q3cDropdown" onchange="updateAnswers('q3c')">
+						<option value="Empty" style="display: none"></option>
+						<option value="Manual">Manual</option>
+						<option value="Electric">Electric</option>
+					</select>
+				</div>
+				<div id="q3d" class="subquestion"> 3d. Is the patient over 18 stone/114kg?
+					<select id="q3dDropdown" onchange="updateAnswers('q3d')">
+						<option value="Empty" style="display: none"></option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					</select>
+				</div>
+				<div id="q3e" class="subquestion"> 3e. What is the patient's weight (in kg)?<br />
+					<input type="number" id="q3eInputBox" value="114" min="114" max="999"/>kg
+					<button id="q3eConfirmButton" onclick="updateAnswers('q3e')">Confirm</button>
+				</div>
 			</div>
 
 
@@ -217,23 +232,9 @@
 						<option value="No">No</option>
 					</select>
 				</div>
-				<div id="q5b" class="subquestion"> 5b. Are there any turns in the stairs/steps?
-					<select id="q5bDropdown" onchange="updateAnswers('q5b')">
-						<option value="Empty" style="display: none"></option>
-						<option value="Yes">Yes</option>
-						<option value="No">No</option>
-					</select>
-				</div>
-				<div id="q5c" class="subquestion"> 5c. Is the patient over 18 stone/114kg?
-					<select id="q5cDropdown" onchange="updateAnswers('q5c')">
-						<option value="Empty" style="display: none"></option>
-						<option value="Yes">Yes</option>
-						<option value="No">No</option>
-					</select>
-				</div>
-				<div id="q5d" class="subquestion"> 5d. What is the patient's weight (in kg)?<br />
-					<input type="number" id="q5dInputBox" value="114" min="114" max="999"/>kg
-					<button id="q5dConfirmButton" onclick="updateAnswers('q5d')">Confirm</button>
+				<div id="q5b" class="subquestion"> 5b. What is the patient's weight (in kg)?<br />
+					<input type="number" id="q5bInputBox" value="114" min="114" max="999"/>kg
+					<button id="q5bConfirmButton" onclick="updateAnswers('q5b')">Confirm</button>
 				</div>
 			</div>
 			
