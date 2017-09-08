@@ -1,0 +1,2 @@
+Changed
+	Weight confirm box button now reads 'Return' instead of 'Confirm'

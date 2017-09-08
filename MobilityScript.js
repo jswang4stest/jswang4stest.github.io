@@ -30,13 +30,14 @@
 	var bariatric = false;
 	var carryChair = false;
 	var bringWheelchair = false;
+	var electricWheelchair = false;
 	
 	var steps = false;
 	
 	var q2StoreNextQuestion = '';
 	
 	var howMuchOxygen = 0;
-	var weight = -1;	var travelsInWheelchair = false;	var stretcher = false;	
+	var weight = -1;	var usesWheelchair = false;	var stretcher = false;	
 	var wheelchairVehicle = false;
 	
 	var weightAsked = false;
@@ -120,8 +121,10 @@
 				
 				if(document.getElementById('q2Dropdown').value == "Yes"){
 					showSubQuestion('q2a');
+					usesWheelchair = true;
 				}
 				else if(document.getElementById('q2Dropdown').value == "No"){
+					usesWheelchair = false;
 					//Must be at least 2 man if the patient needs oxygen
 					// but if the patient self administers they can still go in a walker car or 1 man ambulance
 					if(o2 && !selfAdministers)
@@ -190,6 +193,7 @@
 
 			case 'q2c': //Is the patient's wheelchair manual or electric?
 				
+				updateEquipment('electricWheelchair', false);
 				if(document.getElementById('q2cDropdown').value == "Electric"){
 					showWheelchairCheckBox();
 				}
@@ -301,16 +305,18 @@
 				
 				if(document.getElementById('q5Dropdown').value == "Yes"){
 					
-					if(weight > maxCarryWeight){
-						showReferToControlBox("The patient's weight exceeds the maximum carry weight");
+					if(usesWheelchair)
+					{
+						showSubQuestion('q5b');
 					}
-					else {
+					else
+					{
 						showSubQuestion('q5a');
-						steps = true;
 					}
+					steps = true;
 				}
 				else if(document.getElementById('q5Dropdown').value == "No"){
-					if(wheelchairToFrom)
+					if(usesWheelchair)
 					{
 						if(wheelchairVehicle)
 						{
@@ -331,15 +337,33 @@
 				
 				break;
 				
-			case 'q5a': // Are there any turns in the stairs/steps?
+			case 'q5a': // Will the patient need to be carried down the stairs/steps?
 				
 				if(document.getElementById('q5aDropdown').value == "Yes"){
-					showReferToControlBox("");
+					showSubQuestion('q5b');
 				}
 				else if(document.getElementById('q5aDropdown').value == "No"){
+					if(wheelchairVehicle)
+					{
+						suggestMobility('Wheelchair 2 Man');
+					}
+					else
+					{						
+						suggestMobility('Seated 2 Man');
+					}
+				}
+				
+				break;
+				
+			case 'q5b': // Are there any turns in the stairs/steps?
+				
+				if(document.getElementById('q5bDropdown').value == "Yes"){
+					showReferToControlBox("");
+				}
+				else if(document.getElementById('q5bDropdown').value == "No"){
 					if(!weightAsked)
 					{
-						showSubQuestion('q5b');
+						showSubQuestion('q5c');
 					}
 					else
 					{
@@ -348,7 +372,7 @@
 							updateRequirements('bariatric', true);
 							updateRequirements('carryChair', true);
 						}
-						if(wheelchairToFrom)
+						if(usesWheelchair)
 						{
 							if(wheelchairVehicle)
 							{
@@ -368,18 +392,18 @@
 				
 				break;
 
-			case 'q5b': // Is the patient over 18 stone/114kg?
+			case 'q5c': // Is the patient over 18 stone/114kg?
 				
 				weightAsked = true;
-				if(document.getElementById('q5bDropdown').value == "Yes"){
-					showSubQuestion('q5c');
+				if(document.getElementById('q5cDropdown').value == "Yes"){
+					showSubQuestion('q5d');
 					updateRequirements('bariatric', true);
 					updateRequirements('carryChair', true);
 				}
-				else if(document.getElementById('q5bDropdown').value == "No"){
+				else if(document.getElementById('q5cDropdown').value == "No"){
 					updateRequirements('bariatric', false);
 					updateRequirements('carryChair', false);
-					if(wheelchairToFrom)
+					if(usesWheelchair)
 					{
 						if(wheelchairVehicle)
 						{
@@ -398,20 +422,20 @@
 				
 				break;
 
-			case 'q5c': // What is the patient's weight (in kg)?
+			case 'q5d': // What is the patient's weight (in kg)?
 				weightAsked = true;
-				weight = document.getElementById('q5cInputBox').value;
+				weight = document.getElementById('q5dInputBox').value;
 				
 				if(weight < bariatricWeight)
 				{
-					showWeightConfirmBox("q5c");
+					showWeightConfirmBox("q5d");
 					break;
 				}
 				if(weight > maxCarryWeight){
 					showReferToControlBox("The patient's weight exceeds the maximum carry weight");
 				}
 				else {
-					if(wheelchairToFrom)
+					if(usesWheelchair)
 					{
 						if(wheelchairVehicle)
 						{
@@ -504,6 +528,9 @@
 			additionalDetails = additionalDetails.concat("<p>" + (bariatric ? "Bariatric " : "") + "Wheelchair required to and from vehicle</p>");
 			equipment = equipment.concat("<p>Wheel Chair to/from</p>");
 		}
+		if(electricWheelchair){
+			equipment = equipment.concat("Electric Wheelchair");
+		}
 		if(mobility == 'Bariatric Wheelchair'){
 			equipment = equipment.concat("<p>Bariatric Wheelchair Required</p>");
 		}
@@ -539,6 +566,8 @@
 		document.getElementById("requirementsDiv").innerHTML = requirements;
 		document.getElementById("equipmentDiv").innerHTML = equipment;
 		
+		parent.document.getElementById("txtJrnyMob").style.visibility = "hidden";
+		window.alert("Attempting to populate parent");
 	}
 	
 	function getMobilityDescription(mobility){
@@ -575,6 +604,7 @@
 	
 	function showQuestion(question) {
 		document.getElementById(question).style.display = 'inline-block';
+		highlightQuestion(question);
 	}
 	
 	function showSubQuestion(question) {
@@ -584,7 +614,9 @@
 	
 	function highlightQuestion(question) {
 		document.getElementById(question).className += " highlightQuestion";
-		setTimeout(function(){document.getElementById(question).classList.remove("highlightQuestion");}, 500);		
+		setTimeout(function(){
+			document.getElementById(question).classList.remove("highlightQuestion");
+		}, 500);
 	}
 	
 	
@@ -666,6 +698,7 @@
 		document.getElementById('q5a').style.visibility = 'hidden';
 		document.getElementById('q5b').style.visibility = 'hidden';
 		document.getElementById('q5c').style.visibility = 'hidden';
+		document.getElementById('q5d').style.visibility = 'hidden';
 		document.getElementById('q6').style.display = 'none';
 		document.getElementById('q6a').style.visibility = 'hidden';
 	}
@@ -770,6 +803,18 @@
 						bariatricWheelchair = false;
 					}
 				break;
+			case 'electricWheelchair':
+					if(setActive)
+					{
+						document.getElementById("infoElectricWheelchair").style.backgroundColor = "#44FFFF";
+						electricWheelchair = true;
+					}
+					else
+					{
+						document.getElementById("infoElectricWheelchair").style.backgroundColor = "#DDDDDD";
+						electricWheelchair = false;
+					}
+				break;
 		}
 	}
 	
@@ -834,11 +879,11 @@
 			previousAnswers.push(selfAdministers);		//9
 			previousAnswers.push(weight);				//10
 			previousAnswers.push(weightAsked);			//11
-			previousAnswers.push(travelsInWheelchair);	//12
+			previousAnswers.push(usesWheelchair);		//12
 			previousAnswers.push(stretcher);			//13
-			previousAnswers.push(wheelchairVehicle);	//14
+			previousAnswers.push(wheelchairVehicle);	//14			
+			previousAnswers.push(electricWheelchair);	//15
 			
-			previousAnswers.push("placeholder");		//15
 			previousAnswers.push("placeholder");		//16
 			previousAnswers.push("placeholder");		//17
 			previousAnswers.push("placeholder");		//18
@@ -848,6 +893,7 @@
 			updateEquipment("o2", false);
 			updateEquipment("wheelchairToFrom", false);
 			updateEquipment("bariatricWheelchair", false);
+			updateEquipment("electricWheelchair", false);
 			
 			updateRequirements("bariatric", false);
 			updateRequirements("carryChair", false);
@@ -859,7 +905,7 @@
 		
 			howMuchOxygen = 0;
 			weight = -1;
-			travelsInWheelchair = false;
+			usesWheelchair = false;
 			stretcher = false;
 			weightAsked = false;
 			
@@ -882,7 +928,8 @@
 			previousAnswers.push(document.getElementById('q5Dropdown').selectedIndex);
 			previousAnswers.push(document.getElementById('q5aDropdown').selectedIndex);
 			previousAnswers.push(document.getElementById('q5bDropdown').selectedIndex);
-			previousAnswers.push(document.getElementById('q5cInputBox').value);		
+			previousAnswers.push(document.getElementById('q5cDropdown').selectedIndex);
+			previousAnswers.push(document.getElementById('q5dInputBox').value);		
 			previousAnswers.push(document.getElementById('q6Dropdown').selectedIndex);
 			previousAnswers.push(document.getElementById('q6aInputBox').value);
 			
@@ -908,19 +955,20 @@
 			document.getElementById('q1Dropdown').selectedIndex = 0;
 			document.getElementById('q1aDropdown').selectedIndex = 0;
 			document.getElementById('q1bDropdown').selectedIndex = 0;
-			document.getElementById('q1cInputBox').value = 4;
+			document.getElementById('q1cInputBox').value = contractOxygenMinimum();
 			document.getElementById('q2Dropdown').selectedIndex = 0;
 			document.getElementById('q2aDropdown').selectedIndex = 0;
 			document.getElementById('q2bDropdown').selectedIndex = 0;
 			document.getElementById('q2cDropdown').selectedIndex = 0;
 			document.getElementById('q2dDropdown').selectedIndex = 0;
-			document.getElementById('q2eInputBox').value = bariatricWeight;		
-			document.getElementById('q3Dropdown').selectedIndex = 0;		
-			document.getElementById('q4Dropdown').selectedIndex = 0;		
+			document.getElementById('q2eInputBox').value = bariatricWeight;
+			document.getElementById('q3Dropdown').selectedIndex = 0;
+			document.getElementById('q4Dropdown').selectedIndex = 0;
 			document.getElementById('q5Dropdown').selectedIndex = 0;
 			document.getElementById('q5aDropdown').selectedIndex = 0;
 			document.getElementById('q5bDropdown').selectedIndex = 0;
-			document.getElementById('q5cInputBox').value = bariatricWeight;
+			document.getElementById('q5cDropdown').selectedIndex = 0;
+			document.getElementById('q5dInputBox').value = bariatricWeight;
 			document.getElementById('q6Dropdown').selectedIndex = 0;
 			document.getElementById('q6aInputBox').value = bariatricWeight;
 			
@@ -954,6 +1002,7 @@
 			updateEquipment("o2", 					previousAnswers[0] == "true");
 			updateEquipment("wheelchairToFrom", 	previousAnswers[1] == "true");
 			updateEquipment("bariatricWheelchair", 	previousAnswers[2] == "true");
+			updateEquipment("electricWheelchair",	previousAnswers[15] == "true");
 			updateRequirements("bariatric", 		previousAnswers[3] == "true");
 			updateRequirements("carryChair", 		previousAnswers[4] == "true");
 			
@@ -963,7 +1012,7 @@
 			selfAdministers = 						previousAnswers[9];
 			weight = 								previousAnswers[10];
 			weightAsked = 							previousAnswers[11] == "true";
-			travelsInWheelchair = 					previousAnswers[12] == "true";
+			usesWheelchair = 						previousAnswers[12] == "true";
 			stretcher = 							previousAnswers[13] == "true";
 			wheelchairVehicle = 					previousAnswers[14] == "true";
 			
@@ -983,28 +1032,29 @@
 			document.getElementById('q5Dropdown').selectedIndex = 	previousAnswers[32];
 			document.getElementById('q5aDropdown').selectedIndex = 	previousAnswers[33];
 			document.getElementById('q5bDropdown').selectedIndex = 	previousAnswers[34];
-			document.getElementById('q5cInputBox').value = 			previousAnswers[35];			
-			document.getElementById('q6Dropdown').selectedIndex = 	previousAnswers[36];
-			document.getElementById('q6aInputBox').value = 			previousAnswers[37];
+			document.getElementById('q5cDropdown').selectedIndex = 	previousAnswers[35];
+			document.getElementById('q5dInputBox').value = 			previousAnswers[36];			
+			document.getElementById('q6Dropdown').selectedIndex = 	previousAnswers[37];
+			document.getElementById('q6aInputBox').value = 			previousAnswers[38];
 			
 			
-			document.getElementById('q1a').style.visibility = 		previousAnswers[38];
-			document.getElementById('q1b').style.visibility = 		previousAnswers[39];
-			document.getElementById('q1c').style.visibility = 		previousAnswers[40];
-			document.getElementById('q2').style.display = 			previousAnswers[41];
-			document.getElementById('q2a').style.visibility = 		previousAnswers[42];
-			document.getElementById('q2b').style.visibility = 		previousAnswers[43];
-			document.getElementById('q2c').style.visibility = 		previousAnswers[44];
-			document.getElementById('q2d').style.visibility = 		previousAnswers[45];
-			document.getElementById('q2e').style.visibility = 		previousAnswers[46];
-			document.getElementById('q3').style.display = 			previousAnswers[47];
-			document.getElementById('q4').style.display = 			previousAnswers[48];
-			document.getElementById('q5').style.display = 			previousAnswers[49];
-			document.getElementById('q5a').style.visibility = 		previousAnswers[50];
-			document.getElementById('q5b').style.visibility = 		previousAnswers[51];
-			document.getElementById('q5c').style.visibility = 		previousAnswers[52];
-			document.getElementById('q6').style.display = 			previousAnswers[53];
-			document.getElementById('q6a').style.visibility = 		previousAnswers[54];			
+			document.getElementById('q1a').style.visibility = 		previousAnswers[39];
+			document.getElementById('q1b').style.visibility = 		previousAnswers[40];
+			document.getElementById('q1c').style.visibility = 		previousAnswers[41];
+			document.getElementById('q2').style.display = 			previousAnswers[42];
+			document.getElementById('q2a').style.visibility = 		previousAnswers[43];
+			document.getElementById('q2b').style.visibility = 		previousAnswers[44];
+			document.getElementById('q2c').style.visibility = 		previousAnswers[45];
+			document.getElementById('q2d').style.visibility = 		previousAnswers[46];
+			document.getElementById('q2e').style.visibility = 		previousAnswers[47];
+			document.getElementById('q3').style.display = 			previousAnswers[48];
+			document.getElementById('q4').style.display = 			previousAnswers[49];
+			document.getElementById('q5').style.display = 			previousAnswers[50];
+			document.getElementById('q5a').style.visibility = 		previousAnswers[51];
+			document.getElementById('q5b').style.visibility = 		previousAnswers[52];
+			document.getElementById('q5c').style.visibility = 		previousAnswers[53];
+			document.getElementById('q6').style.display = 			previousAnswers[54];
+			document.getElementById('q6a').style.visibility = 		previousAnswers[55];			
 		}
 	}
 	

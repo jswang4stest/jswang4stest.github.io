@@ -16,14 +16,17 @@
 
 	<body onload="ChangeTab('MobilityAssessment')">
 		<ul id="navbar" style="white-space: nowrap">
-			<li><img src="Logo.png" id="g4slogo" class="cant_select" style="cursor: pointer" alt="G4S" onclick="window.open('README.html', '_blank')"/></li>  			
+			<li><img src="Logo.png" id="g4slogo" class="cant_select" style="xcursor: pointer" alt="G4S" onclick="xwindow.open('README.html', '_blank')"/></li>  	
+			<li id="ReadmeTab" onclick="ChangeTab('Readme')" class="tab cant_select"><a>Readme</a></li>		
 			<li id="MobilityAssessmentTab" onclick="ChangeTab('MobilityAssessment')" class="tab cant_select tab_selected dark_tab"><a>Mobility Assessment</a></li>
 			<li id="MentalHealthAssessmentTab" onclick="ChangeTab('MentalHealthAssessment')" class="tab cant_select"><a>Mental Health Assessment</a></li>
-			<label style="float:right; color: red; background-color: white">BETA - send feedback to jeremy.swan@uk.g4s.com</label>
+			<label id="betaLabel" class="cant_select">BETA - send feedback to jeremy.swan@uk.g4s.com</label>
+			<label id="versionLabel" class="cant_select">v0.4.4</label>
+			<input id="txtJrnyMob" class="autocomplete srchmob summary inset required" id="txtJrnyMob" type="text" placeholder=" ..." data-parentid="txtJrnyST" value=""/>
 		</ul>
 		
 		<iframe id="MobilityAssessmentFrame" class="frame" style="display: none" src="MobilityAssessment.html"></iframe>
 		<iframe id="MentalHealthAssessmentFrame" class="frame" style="display: none" src="MentalHealthAssessment.html"></iframe>
-		
+		<iframe id="ReadmeFrame" class="frame" style="display: none" src="README.html"></iframe>		
 	</body>
 </html>

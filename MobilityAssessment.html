@@ -56,12 +56,14 @@
 			<div id="wheelchairCheck" class="modalBox">
 				<h3>Some electric wheelchairs cannot be taken on our vehicles</h3>
 				<h4>Please contact control and provide details of the wheelchair to confirm we are able to transport the patient</h4>
-				<button id="wheelchairContinueButton" onclick="hideWheelchairCheckBox();if(needsOxygen){showQuestion('q5');}else{showQuestion('q4');}">Continue</button>
+				<button id="wheelchairContinueButton" onclick="
+				updateEquipment('electricWheelchair', true);
+				hideWheelchairCheckBox();">Continue</button>
 			</div>
 			<div id="weightConfirmBox" class="modalBox">
 				<h3>Please confirm the patient's weight</h3>
 				<h4>The weight you have entered is less than 114kg</h4>
-				<button id="weightConfirmContinueButton" onclick="confirmWeight('confirm')">Confirm</button>
+				<button id="weightConfirmContinueButton" onclick="confirmWeight('confirm')">Return</button>
 			</div>
 			<div id="weightContradictionBox" class="modalBox">
 				<h3>Please confirm the patient's weight</h3>
@@ -96,6 +98,7 @@
 				<div id="infoO2" class="infoValue" onclick="xupdateEquipment('o2', !o2)">O2</div>
 				<div id="infoWheelchairToFrom" class="infoValue" onclick="xupdateEquipment('wheelchairToFrom', !wheelchairToFrom)">Wheelchair To/From</div>
 				<div id="infoBariatricWheelchair" class="infoValue" onclick="xupdateEquipment('bariatricWheelchair', !bariatricWheelchair)">Bariatric Wheelchair</div>
+				<div id="infoElectricWheelchair" class="infoValue" onclick="xupdateEquipment('bariatricWheelchair', !bariatricWheelchair)">Electric Wheelchair</div>
 			</div>
 			
 			<div id="infoRequirements" class="infoSection"><h1>Requirements</h1>
@@ -116,7 +119,7 @@
 		
 		<div class="questionboxes">
 			<div id="q1" class="question"> 1. Does the patient require oxygen?
-				<select id="q1Dropdown" onchange="updateAnswers('q1')">
+				<select id="q1Dropdown" onchange="updateAnswers('q1')" autofocus>
 					<option value="Empty" style="display: none"></option>
 					<option value="Yes">Yes</option>
 					<option value="No">No</option>
@@ -207,23 +210,30 @@
 					<option value="Yes">Yes</option>
 					<option value="No">No</option>
 				</select>
-				<div id="q5a" class="subquestion"> 5a. Are there any turns in the stairs/steps?
+				<div id="q5a" class="subquestion"> 5a. Will the patient need to be carried down the stairs/steps?
 					<select id="q5aDropdown" onchange="updateAnswers('q5a')">
 						<option value="Empty" style="display: none"></option>
 						<option value="Yes">Yes</option>
 						<option value="No">No</option>
 					</select>
 				</div>
-				<div id="q5b" class="subquestion"> 5b. Is the patient over 18 stone/114kg?
+				<div id="q5b" class="subquestion"> 5b. Are there any turns in the stairs/steps?
 					<select id="q5bDropdown" onchange="updateAnswers('q5b')">
 						<option value="Empty" style="display: none"></option>
 						<option value="Yes">Yes</option>
 						<option value="No">No</option>
 					</select>
 				</div>
-				<div id="q5c" class="subquestion"> 5c. What is the patient's weight (in kg)?<br />
-					<input type="number" id="q5cInputBox" value="114" min="114" max="999"/>kg
-					<button id="q5cConfirmButton" onclick="updateAnswers('q5c')">Confirm</button>
+				<div id="q5c" class="subquestion"> 5c. Is the patient over 18 stone/114kg?
+					<select id="q5cDropdown" onchange="updateAnswers('q5c')">
+						<option value="Empty" style="display: none"></option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					</select>
+				</div>
+				<div id="q5d" class="subquestion"> 5d. What is the patient's weight (in kg)?<br />
+					<input type="number" id="q5dInputBox" value="114" min="114" max="999"/>kg
+					<button id="q5dConfirmButton" onclick="updateAnswers('q5d')">Confirm</button>
 				</div>
 			</div>
 			
