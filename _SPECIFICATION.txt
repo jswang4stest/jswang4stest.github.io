@@ -1,6 +1,6 @@
 MOBILITY
 
-O2 -> Doesn't self administer -> More than 4 litres -> EMT
+O2 -> Doesn't self administer -> More than 4 litres -> Intermediate Tier
 O2 -> Doesn't self administer -> Less than 4 litres -> In a wheelchair to and from -> Can transfer out -> Can provide own wheelchair -> Over 300kg -> RISK ASSESSMENT
 O2 -> Doesn't self administer -> Less than 4 litres -> In a wheelchair to and from -> Can transfer out -> Can provide own wheelchair -> Over 18 stone -> Has stairs -> Turns in stairs -> RISK ASSESSMENT
 O2 -> Doesn't self administer -> Less than 4 litres -> In a wheelchair to and from -> Can transfer out -> Can provide own wheelchair -> Over 18 stone -> Has stairs -> -> No turns in stairs -> Seated 2 Man

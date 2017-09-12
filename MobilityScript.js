@@ -39,10 +39,13 @@
 	var q3StoreNextQuestion = '';
 	
 	var howMuchOxygen = 0;
-	var weight = -1;	var usesWheelchair = false;	var stretcher = false;
+	var weight = -1;
+	var usesWheelchair = false;
+	var stretcher = false;
 	
 	var threeManLift = false;
-	var fourManLift = false;	
+	var fourManLift = false;
+	
 	var wheelchairVehicle = false;
 	
 	var weightAsked = false;
@@ -103,7 +106,7 @@
 					showSubQuestion('q1c');
 				}
 				else if(document.getElementById('q1bDropdown').value == "No"){
-					showQuestion('q2');
+					showQuestion('q3');
 					howMuchOxygen = 0;
 				}
 				
@@ -118,7 +121,7 @@
 					break;
 				}
 				
-				suggestMobility('EMT');
+				suggestMobility('Intermediate Tier');
 				break;
 
 			
@@ -599,7 +602,7 @@
 	function getMobilityDescription(mobility){
 		switch(mobility)
 		{
-			case 'EMT':
+			case 'Intermediate Tier':
 				return "Patient requires specialist care";
 			
 			case 'Walker car':
@@ -682,7 +685,7 @@
 				return contract=="k&m" ? mobility : (contract=="uclh" ? "10 Car Suitable" : "null");
 			case "Bariatric Stretcher":
 				return contract=="k&m" ? mobility : (contract=="uclh" ? "BS Bariatric Amb Stretcher" : "null");
-			case "EMT":
+			case "Intermediate Tier":
 				return contract=="k&m" ? mobility : (contract=="uclh" ? "TC HDU Amb Chair" : "null");
 			case "Seated 1 Man":
 				return contract=="k&m" ? mobility : (contract=="uclh" ? "11 Ambulance walker" : "null");
@@ -931,9 +934,9 @@
 			previousAnswers.push(stretcher);			//13
 			previousAnswers.push(wheelchairVehicle);	//14			
 			previousAnswers.push(electricWheelchair);	//15
+			previousAnswers.push(threeManLift);			//16
+			previousAnswers.push(fourManLift);			//17
 			
-			previousAnswers.push("placeholder");		//16
-			previousAnswers.push("placeholder");		//17
 			previousAnswers.push("placeholder");		//18
 			previousAnswers.push("placeholder");		//19
 			
@@ -945,6 +948,8 @@
 			
 			updateRequirements("bariatric", false);
 			updateRequirements("carryChair", false);
+			updateRequirements("3ManLift", false);
+			updateRequirements("4ManLift", false);
 			//updateRequirements("bringWheelchair", false);
 		
 			steps = false;
@@ -965,6 +970,7 @@
 			previousAnswers.push(document.getElementById('q1aDropdown').selectedIndex);
 			previousAnswers.push(document.getElementById('q1bDropdown').selectedIndex);
 			previousAnswers.push(document.getElementById('q1cInputBox').value);
+			previousAnswers.push(document.getElementById('q2Dropdown').selectedIndex);
 			previousAnswers.push(document.getElementById('q3Dropdown').selectedIndex);
 			previousAnswers.push(document.getElementById('q3aDropdown').selectedIndex);
 			previousAnswers.push(document.getElementById('q3bDropdown').selectedIndex);
@@ -975,9 +981,7 @@
 			previousAnswers.push(document.getElementById('q4Dropdown').selectedIndex);		
 			previousAnswers.push(document.getElementById('q5Dropdown').selectedIndex);
 			previousAnswers.push(document.getElementById('q5aDropdown').selectedIndex);
-			previousAnswers.push(document.getElementById('q5bDropdown').selectedIndex);
-			previousAnswers.push(document.getElementById('q5bDropdown').selectedIndex);
-			previousAnswers.push(document.getElementById('q5dInputBox').value);		
+			previousAnswers.push(document.getElementById('q5bInputBox').value);		
 			previousAnswers.push(document.getElementById('q6Dropdown').selectedIndex);
 			previousAnswers.push(document.getElementById('q6aInputBox').value);
 			
@@ -985,6 +989,7 @@
 			previousAnswers.push(document.getElementById('q1a').style.visibility);
 			previousAnswers.push(document.getElementById('q1b').style.visibility);
 			previousAnswers.push(document.getElementById('q1c').style.visibility);
+			previousAnswers.push(document.getElementById('q2').style.display);
 			previousAnswers.push(document.getElementById('q3').style.display);
 			previousAnswers.push(document.getElementById('q3a').style.visibility);
 			previousAnswers.push(document.getElementById('q3b').style.visibility);
@@ -1014,11 +1019,9 @@
 			document.getElementById('q4Dropdown').selectedIndex = 0;
 			document.getElementById('q5Dropdown').selectedIndex = 0;
 			document.getElementById('q5aDropdown').selectedIndex = 0;
-			document.getElementById('q5bDropdown').selectedIndex = 0;
-			document.getElementById('q5bDropdown').selectedIndex = 0;
-			document.getElementById('q5dInputBox').value = bariatricWeight;
+			document.getElementById('q5bInputBox').value = 1;
 			document.getElementById('q6Dropdown').selectedIndex = 0;
-			document.getElementById('q6aInputBox').value = bariatricWeight;
+			document.getElementById('q6aInputBox').value = 1;
 			
 			if(useCookies)
 			{
@@ -1053,6 +1056,8 @@
 			updateEquipment("electricWheelchair",	previousAnswers[15] == "true");
 			updateRequirements("bariatric", 		previousAnswers[3] == "true");
 			updateRequirements("carryChair", 		previousAnswers[4] == "true");
+			updateRequirements("threeManLift", 		previousAnswers[16] == "true");
+			updateRequirements("fourManLift", 		previousAnswers[17] == "true");
 			
 			steps = 								previousAnswers[6] == "true";
 			q3StoreNextQuestion = 					previousAnswers[7];
@@ -1069,40 +1074,42 @@
 			document.getElementById('q1aDropdown').selectedIndex = 	previousAnswers[21];
 			document.getElementById('q1bDropdown').selectedIndex = 	previousAnswers[22];
 			document.getElementById('q1cInputBox').value = 			previousAnswers[23];
-			document.getElementById('q3Dropdown').selectedIndex = 	previousAnswers[24];
-			document.getElementById('q3aDropdown').selectedIndex = 	previousAnswers[25];
-			document.getElementById('q3bDropdown').selectedIndex = 	previousAnswers[26];
-			document.getElementById('q3cDropdown').selectedIndex = 	previousAnswers[27];
-			document.getElementById('q3dDropdown').selectedIndex = 	previousAnswers[28];
-			document.getElementById('q3eInputBox').value = 			previousAnswers[29];			
-			document.getElementById('q2Dropdown').selectedIndex = 	previousAnswers[30];			
-			document.getElementById('q4Dropdown').selectedIndex = 	previousAnswers[31];			
-			document.getElementById('q5Dropdown').selectedIndex = 	previousAnswers[32];
-			document.getElementById('q5aDropdown').selectedIndex = 	previousAnswers[33];
-			document.getElementById('q5bDropdown').selectedIndex = 	previousAnswers[34];
+			document.getElementById('q2Dropdown').selectedIndex = 	previousAnswers[24];
+			document.getElementById('q3Dropdown').selectedIndex = 	previousAnswers[25];
+			document.getElementById('q3aDropdown').selectedIndex = 	previousAnswers[26];
+			document.getElementById('q3bDropdown').selectedIndex = 	previousAnswers[27];
+			document.getElementById('q3cDropdown').selectedIndex = 	previousAnswers[28];
+			document.getElementById('q3dDropdown').selectedIndex = 	previousAnswers[29];
+			document.getElementById('q3eInputBox').value = 			previousAnswers[20];			
+			document.getElementById('q2Dropdown').selectedIndex = 	previousAnswers[31];			
+			document.getElementById('q4Dropdown').selectedIndex = 	previousAnswers[32];			
+			document.getElementById('q5Dropdown').selectedIndex = 	previousAnswers[33];
+			document.getElementById('q5aDropdown').selectedIndex = 	previousAnswers[34];
 			document.getElementById('q5bDropdown').selectedIndex = 	previousAnswers[35];
-			document.getElementById('q5dInputBox').value = 			previousAnswers[36];			
-			document.getElementById('q6Dropdown').selectedIndex = 	previousAnswers[37];
-			document.getElementById('q6aInputBox').value = 			previousAnswers[38];
+			document.getElementById('q5bDropdown').selectedIndex = 	previousAnswers[36];
+			document.getElementById('q5dInputBox').value = 			previousAnswers[37];			
+			document.getElementById('q6Dropdown').selectedIndex = 	previousAnswers[38];
+			document.getElementById('q6aInputBox').value = 			previousAnswers[39];
 			
 			
-			document.getElementById('q1a').style.visibility = 		previousAnswers[39];
-			document.getElementById('q1b').style.visibility = 		previousAnswers[40];
-			document.getElementById('q1c').style.visibility = 		previousAnswers[41];
-			document.getElementById('q3').style.display = 			previousAnswers[42];
-			document.getElementById('q3a').style.visibility = 		previousAnswers[43];
-			document.getElementById('q3b').style.visibility = 		previousAnswers[44];
-			document.getElementById('q3c').style.visibility = 		previousAnswers[45];
-			document.getElementById('q3d').style.visibility = 		previousAnswers[46];
-			document.getElementById('q3e').style.visibility = 		previousAnswers[47];
-			document.getElementById('q2').style.display = 			previousAnswers[48];
-			document.getElementById('q4').style.display = 			previousAnswers[49];
-			document.getElementById('q5').style.display = 			previousAnswers[50];
-			document.getElementById('q5a').style.visibility = 		previousAnswers[51];
-			document.getElementById('q5b').style.visibility = 		previousAnswers[52];
-			document.getElementById('q5b').style.visibility = 		previousAnswers[53];
-			document.getElementById('q6').style.display = 			previousAnswers[54];
-			document.getElementById('q6a').style.visibility = 		previousAnswers[55];			
+			document.getElementById('q1a').style.visibility = 		previousAnswers[30];
+			document.getElementById('q1b').style.visibility = 		previousAnswers[41];
+			document.getElementById('q1c').style.visibility = 		previousAnswers[42];
+			document.getElementById('q2').style.visibility = 		previousAnswers[43];
+			document.getElementById('q3').style.display = 			previousAnswers[44];
+			document.getElementById('q3a').style.visibility = 		previousAnswers[45];
+			document.getElementById('q3b').style.visibility = 		previousAnswers[46];
+			document.getElementById('q3c').style.visibility = 		previousAnswers[47];
+			document.getElementById('q3d').style.visibility = 		previousAnswers[48];
+			document.getElementById('q3e').style.visibility = 		previousAnswers[49];
+			document.getElementById('q2').style.display = 			previousAnswers[40];
+			document.getElementById('q4').style.display = 			previousAnswers[41];
+			document.getElementById('q5').style.display = 			previousAnswers[52];
+			document.getElementById('q5a').style.visibility = 		previousAnswers[53];
+			document.getElementById('q5b').style.visibility = 		previousAnswers[54];
+			document.getElementById('q5b').style.visibility = 		previousAnswers[55];
+			document.getElementById('q6').style.display = 			previousAnswers[56];
+			document.getElementById('q6a').style.visibility = 		previousAnswers[57];			
 		}
 	}
 	

@@ -69,6 +69,7 @@
 				<h4><em>QEH: 0800 953 0372</em></h4>
 				<h4><em>BHR: 0208 598 2342</em></h4>
 				<h4><em>Kent: 0800 096 0211</em></h4>
+				<h4><em>UCLH: </em></h4>
 				<button id="wheelchairContinueButton" onclick="
 				updateEquipment('electricWheelchair', true);
 				hideWheelchairCheckBox();">Continue</button>
@@ -160,7 +161,7 @@
 			</div>
 			
 
-			<div id="q2" class="question"> 2. Is the patient mobile?
+			<div id="q2" class="question"> 2. Can the patient mobilise to the vehicle on their own?
 				<select id="q2Dropdown" onchange="updateAnswers('q2')">
 					<option value="Empty" style="display: none"></option>
 					<option value="Yes">Yes</option>
@@ -233,7 +234,7 @@
 					</select>
 				</div>
 				<div id="q5b" class="subquestion"> 5b. What is the patient's weight (in kg)?<br />
-					<input type="number" id="q5bInputBox" value="114" min="114" max="999"/>kg
+					<input type="number" id="q5bInputBox" value="1" min="1" max="999"/>kg
 					<button id="q5bConfirmButton" onclick="updateAnswers('q5b')">Confirm</button>
 				</div>
 			</div>

@@ -1,14 +1,2 @@
-Added
-	3 and 4 man lift added in requirements
-	If the patient weighs more than 14st they are given a 3 man lift, 18st a 4 man lift
-	Contact number for control in the "refer to control" popups
-
 Changed
-	Weight confirm box button now reads 'Return' instead of 'Confirm'
-	Swapped q2 and q3
-	q2 now reads "Is the patient mobile?"
-	Carry chair is now turned on whenever the patient needs to be carried
-	
-
-Removed
-	q5b and q5c, as we need to know exact weight if the patient is being carried
+	q2 has been reworded to 'Can the patient mobilise to the vehicle on their own?'
